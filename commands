@@ -1,0 +1,31 @@
+ШАГ 2
+1) владелец (rwx) - все права, группа (r-x) - чтение и выполнение, остальные (r-x) -  чтение и выполнение.
+2) chmod go-r dir_test
+3) chmod o-r,go-x subdir_test
+4) владелец (rw-) - чтение и запись, группа (r--) - чтение, остальные (r--) - чтение.
+
+ШАГ 3
+1) ln -s /groups/os2022/22107/gordeev/shell-lab3/dir_test/subdir_test/text1 softlink_text1
+ln -s /groups/os2022/22107/gordeev/shell-lab3/dir_test/subdir_test/text2 softlink_text2
+ln -s /groups/os2022/22107/gordeev/shell-lab3/dir_test/subdir_test/text3 softlink_text3
+2) ln /groups/os2022/22107/gordeev/shell-lab3/dir_test/subdir_test/text1 hardlink_text1-1
+ln /groups/os2022/22107/gordeev/shell-lab3/dir_test/subdir_test/text1 hardlink_text1-2
+3) ln /groups/os2022/22107/gordeev/shell-lab3/dir_test/subdir_test softlink_dir_test
+
+Символическая ссылка (soft link) — это файл, содержащий путь к другому файлу и имеющий специальный тип. Символичеcкая ссылка — это аналог ярлыка в ОС Windows. Она обладает собственными правами доступа, при удалении, переименовании или перемещении файла ссылка на него не изменяется и указывает на уже не существующий файл. 
+
+Символьное имя файла — жесткая ссылка (hard link) на индексный дескриптор файла. Жёсткая ссылка - дополнительный указатель на файл. Имеет те же права доступа, что и файл. Фактически является еще одним именем для файла, т.к. хранит адрес в памяти. 
+
+Можно создавать символические ссылки на каталог.
+Нельзя создавать жёсткие ссылки на каталог.
+
+ШАГ 4
+1) find ~/ -type f -name "*~" -exec rm {} \;
+2) find ~/ -maxdepth 0 -type d -exec du -d 1 {} \;
+3) find /home/02/ -maxdepth 1 -perm -o=w -exec /bin/basename -a {} \;
+
+------------------------------------------------
+Работа над ошибками
+
+ШАГ 4
+3) find /home -maxdepth 2 -perm -0777 -type d -exec /bin/basename {} \;
